@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ごあいさつ - かみしも温泉センター（廃業済）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="introduce.css" />
+  <style>
+    /* 虹色アニメーション */
+    #rainbow-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    #rainbow-overlay.active {
+      display: block;
+      animation: rainbow-flash 0.6s linear infinite;
+    }
+
+    @keyframes rainbow-flash {
+      0%   { background: red; }
+      16%  { background: orange; }
+      33%  { background: yellow; }
+      50%  { background: green; }
+      66%  { background: blue; }
+      83%  { background: indigo; }
+      100% { background: violet; }
+    }
+
+    /* ボタンの周囲スタイル（最小限に） */
+    .warning-container, .disable-container {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">かみしも温泉センター（廃業済）</a></h1>
+    <p>― 滞留記録：残2／発出ログ不明 ―</p>
+  </header>
+
+  <nav>
+    <a href="introduce.html">ごあいさつ</a>
+    <a href="structure.html">地下構造</a>
+    <a href="testimony.html">証言資料</a>
+    <a href="history.html">沿革</a>
+    <a href="kousatsu.html">仮説・考察</a>
+    <a href="gallery.html">参考文献</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>ごあいさつ</h2>
+      <p>
+        ご覧いただきありがとうございます<span class="trigger-rainbow" style="cursor:pointer;">♬</span><br>
+        本サイト「かみしも温泉センター（廃業済）」は、かみしも温泉センターという架空の組織のHPを模した、<br>
+        陰謀論と呼ばれるものについて整理・考察するための個人アーカイブです<span class="trigger-rainbow" style="cursor:pointer;">♬</span>
+      </p>
+
+      <h2>本サイトの目的</h2>
+      <p>
+        ・所謂「陰謀論」と呼ばれるものの歴史及び歴史的類例の整理<br>
+        ・陰謀論を信じる人々の精神状態及び心理的状態の整理<br>
+        ・陰謀論が誕生するに至った理由及びそれが廃れない理由の考察
+      </p>
+
+      <ul>
+        <li><a href="introduce.html">ごあいさつ(当ページ)</a></li>
+        <li><a href="structure.html"><strong>地下構造</strong></a></li>
+        <li><a href="testimony.html"><strong>証言資料</strong></a></li>
+        <li><a href="history.html"><strong>沿革</strong></a></li>
+        <li><a href="kousatsu.html"><strong>仮説・考察</strong></a></li>
+        <li><a href="gallery.html">参考文献</a></li>
+      </ul>
+
+      <p>
+        内容は随時更新されます。明確な証拠がない情報も多いため、閲覧者自身の判断と批判的思考が求められます。
+      </p>
+
+      <!-- 警告表示 -->
+      <div class="warning-container">
+        <p>※このページには点滅や色変化の効果があります。光過敏性てんかんを持っている方は閲覧に注意してください。</p>
+        <button id="enable-effects">🌈 演出を有効にする</button>
+      </div>
+
+      <!-- 無効ボタン -->
+      <div class="disable-container" style="display: none;">
+        <button id="disable-effects">🛑 演出を無効にする</button>
+      </div>
+    </section>
+
+    <div class="back-to-top">
+      <a href="index.html">▲ トップページへ戻る</a>
+    </div>
+  </main>
+
+  <footer>
+    ※記録は非営利目的で整理・保存されています。閲覧は自己責任でお願いします。
+  </footer>
+
+  <!-- オーバーレイ -->
+  <div id="rainbow-overlay"></div>
+
+  <script>
+    const enableBtn = document.getElementById('enable-effects');
+    const disableBtn = document.getElementById('disable-effects');
+    const warning = document.querySelector('.warning-container');
+    const disableContainer = document.querySelector('.disable-container');
+    const overlay = document.getElementById('rainbow-overlay');
+    const triggers = document.querySelectorAll('.trigger-rainbow');
+    let effectsEnabled = false;
+
+    enableBtn.addEventListener('click', () => {
+      effectsEnabled = true;
+      warning.style.display = 'none';
+      disableContainer.style.display = 'block';
+    });
+
+    disableBtn.addEventListener('click', () => {
+      effectsEnabled = false;
+      overlay.classList.remove('active');
+      disableContainer.style.display = 'none';
+      warning.style.display = 'block';
+    });
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        if (effectsEnabled) {
+          overlay.classList.add('active');
+          setTimeout(() => {
+            overlay.classList.remove('active');
+          }, 2000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

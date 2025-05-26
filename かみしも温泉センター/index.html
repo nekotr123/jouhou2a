@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>かみしも温泉センター（廃業済）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">かみしも温泉センター（廃業済）</a></h1>
+    <p>― 滞留記録：残2／発出ログ不明 ―</p>
+  </header>
+
+  <nav>
+    <a href="introduce.html">ごあいさつ</a>
+    <a href="structure.html">地下構造</a>
+    <a href="testimony.html">証言資料</a>
+    <a href="history.html">沿革</a>
+    <a href="kousatsu.html">仮説・考察</a>
+    <a href="gallery.html">参考文献</a>
+  </nav>
+
+  <main>
+    <section>
+      <div id="datetime"></div>
+      <h2>はじめに：この場所について</h2>
+      <p>
+        本サイトは、各種記録、目撃報告、回収された画像資料などをもとに、通称「陰謀論」と呼ばれる構造体の実態に迫る情報アーカイブです。
+      </p>
+      <div class="image-block">
+        <img src="images/flatearth.jpg" alt="外観" />
+        <img src="images/UFO.JPG" alt="配管室" />
+        <img src="images/al.jpg" alt="記録資料" />
+      </div>
+    </section>
+
+    <section>
+      <h2>記録01：地下構造について</h2>
+      <p>陰謀論的思考に見られる代表的な構造をまとめています。
+        
+      </p>
+      <div class="image-block">
+        <img src="images/mental.jpg" alt="構造図" />
+        <img src="images/mental2.jpg" alt="手書きメモ" />
+      </div>
+    </section>
+
+    <section>
+      <h2>記録02：関係者証言</h2>
+      <p>
+        世界的に有名な陰謀論に関する証言をまとめています。
+      </p>
+      <div class="image-block">
+        <img src="images/witch.jpeg" alt="証言者資料" />
+      </div>
+    </section>
+
+    <div class="back-to-top">
+      <a href="index.html">▲ トップページへ戻る</a>
+    </div>
+  </main>
+
+
+  <footer>
+    ※本記録群は公開許可を得た資料に基づき構成されています。一部情報は再構成または再現です。
+  </footer>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const date = now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日';
+      const time = now.getHours() + '時' + now.getMinutes() + '分' + now.getSeconds() + '秒';
+      const weekday = ['日', '月', '火', '水', '木', '金', '土'][now.getDay()];
+      document.getElementById('datetime').textContent = date + ' (' + weekday + ') ' + time;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    const messages = [
+      "ねむれ ない の？", "また きたね", "どこまで　しってるの？", "こっち　みて", "どうして　おきてるの",
+      "ずっと　まってた", "うしろ　みた？", "ひみつ　しってるよ", "また　みられた", "こえ　きこえる？",
+      "ふりかえって", "ここから　でられない", "さいご　まで", "いっしょ　あそぼ", "みたなみたなみたなみたなみたなみたなみたなみたなみたなみたなみたなみたな",
+      "もう　はじまってる", "ずっと　まえから", "おしえて あげる!"
+    ];
+
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault(); // 右クリックのデフォルト動作を無効化
+
+      const message = messages[Math.floor(Math.random() * messages.length)];
+      const text = document.getElementById('creepy-message');
+      const rec = document.getElementById('rec-indicator');
+      const note = document.getElementById('creepy-note');
+
+      // メッセージを1文字ずつ <span> にしてサイズをバラつかせる（1.3em〜2.3em）
+      text.innerHTML = '';
+      for (const char of message) {
+        const span = document.createElement('span');
+        const randomSize = (Math.random() * 1.0 + 1.3).toFixed(2); // 0.4〜1.4
+        span.textContent = char;
+        span.style.fontSize = randomSize + 'em';
+        span.style.display = 'inline-block';
+        span.style.margin = '0 0.03em';
+        text.appendChild(span);
+      }
+
+      text.classList.add('show-message');
+      rec.classList.add('show-message');
+      note.classList.add('show-note');
+
+      setTimeout(() => {
+        note.classList.remove('show-note');
+        text.classList.remove('show-message');
+        rec.classList.remove('show-message');
+      }, 1800);
+    });
+  </script>
+
+  <div id="creepy-message"></div>
+  <div id="rec-indicator">● REC中</div>
+  <div id="creepy-note">※この操作は記録されました</div>
+
+  <div id="rainbow-overlay"></div>
+<script>
+  function checkRainbowTime() {
+    const now = new Date();
+    const isRainbowTime = now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() <= 10;
+    const overlay = document.getElementById('rainbow-overlay');
+    if (isRainbowTime) {
+      overlay.classList.add('active');
+    } else {
+      overlay.classList.remove('active');
+    }
+  }
+
+  setInterval(checkRainbowTime, 100); // ← 反応も早く
+</script>
+
+</body>
+</html>
